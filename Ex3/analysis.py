@@ -102,6 +102,12 @@ def unique2(n, x):
 # | Func 1 had an average 1 minute projection of 1,275,531,352
 # | Func 2 had an average 1 minute projection of 1,191,791,672
 
+# Func 1 unexpectedly has a higher average projection.
+# I predict that this is the result of a very expensive deep copy and sorting operation.
+# The input data is best-case however, being a sequential list of numbers 0 .. n
+# It would be worth investigating the internals of
+# the default Python sort and deep copy for further explanation.
+
 def main():
     print("-----------------------------------------------------------------------------------------------")
 

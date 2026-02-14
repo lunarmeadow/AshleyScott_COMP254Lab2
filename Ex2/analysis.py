@@ -34,7 +34,7 @@ def prefixAverage1(n, x):
             total += x[i]
             a[j] = total / (i + 1)
     elapsed = perf_counter() - start
-    print(f"{elapsed:2f} seconds elapsed for {n} iterations of func 1")
+    print(f"{elapsed:2f} seconds elapsed for {n:,} iterations of Func 1")
 
 def prefixAverage2(n, x):
     start = perf_counter()
@@ -44,45 +44,35 @@ def prefixAverage2(n, x):
         total += x[j]
         a[j] = total / (j + 1)
     elapsed = perf_counter() - start
-    print(f"{elapsed:2f} seconds elapsed for {n} iterations of func 2")
+    print(f"{elapsed:2f} seconds elapsed for {n:,} iterations of Func 2")
 
 # Benchmark from my Ryzen 7 3700x:
-# --------
-# 0.010371 seconds elapsed for 500 iterations of func 1
-# 0.000036 seconds elapsed for 500 iterations of func 2
-# --------
-# 0.836277 seconds elapsed for 5000 iterations of func 1
-# 0.000349 seconds elapsed for 5000 iterations of func 2
-# --------
-# 3.312172 seconds elapsed for 10000 iterations of func 1
-# 0.000715 seconds elapsed for 10000 iterations of func 2
-# --------
+# -----------------------------------------------------------------------------------------------
+# 0.009659 seconds elapsed for 500 iterations of Func 1
+# ///////////////////////////////////////////////////////////////////////////////////////////////
+# 0.000068 seconds elapsed for 500 iterations of Func 2
+# -----------------------------------------------------------------------------------------------
+# 0.823468 seconds elapsed for 5,000 iterations of Func 1
+# ///////////////////////////////////////////////////////////////////////////////////////////////
+# 0.000351 seconds elapsed for 5,000 iterations of Func 2
+# -----------------------------------------------------------------------------------------------
+# 3.339765 seconds elapsed for 10,000 iterations of Func 1
+# ///////////////////////////////////////////////////////////////////////////////////////////////
+# 0.000724 seconds elapsed for 10,000 iterations of Func 2
+# -----------------------------------------------------------------------------------------------
+
 # This shows that function 1 is O(n^2) and is much more expensive for each operation in n^2.
 # This shows that function 2 is O(n) and is fairly cheap for each operation in n.
 
 def main():
-    print("--------")
+    print("-----------------------------------------------------------------------------------------------")
+    for n in [500, 5000, 10000]:
+        x = [random.random() for _ in range(n)]
+        prefixAverage1(n, x)
+        print("///////////////////////////////////////////////////////////////////////////////////////////////")
+        prefixAverage2(n, x)
+        print("-----------------------------------------------------------------------------------------------")
 
-    n = 500
-    x = [random.random() for _ in range(n)]
-    prefixAverage1(n, x)
-    prefixAverage2(n, x)
-
-    print("--------")
-
-    n = 5000
-    x = [random.random() for _ in range(n)]
-    prefixAverage1(n, x)
-    prefixAverage2(n, x)
-
-    print("--------")
-
-    n = 10000
-    x = [random.random() for _ in range(n)]
-    prefixAverage1(n, x)
-    prefixAverage2(n, x)
-
-    print("--------")
 
 if __name__ == "__main__":
     main()
