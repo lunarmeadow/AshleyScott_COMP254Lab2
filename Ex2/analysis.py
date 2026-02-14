@@ -31,8 +31,8 @@ def prefixAverage1(n, x):
     for j in range(n):
         total = 0
         for i in range(j):
-            total += x[j]
-            a[j] = total / (j + 1)
+            total += x[i]
+            a[j] = total / (i + 1)
     elapsed = perf_counter() - start
     print(f"{elapsed:2f} seconds elapsed for {n} iterations of func 1")
 
